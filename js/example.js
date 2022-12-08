@@ -1,5 +1,9 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable require-jsdoc */
 const nameH1Elemnent = document.querySelector('h1.inline');
 const connectNameElemnent = document.querySelector('span.red');
+const studentNoElemnent = document.querySelector('span.studentNo');
+const emailElemnent = document.querySelector('span.email');
 
 const inputModalElement = document.querySelector('#inputModal');
 
@@ -9,8 +13,23 @@ const setUserName = (name) => {
   connectNameElemnent.textContent = name;
 };
 
-const localName = localStorage.getItem('name');
+const setUserNo = (no) => {
+  studentNoElemnent.textContent = no;
+};
+
+const setUserEmail = (email) => {
+  emailElemnent.textContent = email;
+};
+
+const localName = localStorage.getItem('user');
 if (localName) setUserName(localName);
+
+const localNo = localStorage.getItem('studentNo');
+if (localNo) setUserNo(localNo);
+
+const localEmail = localStorage.getItem('email');
+if (localEmail) setUserEmail(localEmail);
+
 
 nameH1Elemnent.onclick = () => {
   inputModalElement.showModal();
@@ -23,10 +42,27 @@ modalSubmitBtn.onclick = () => {
 
   for (const [key, value] of formData) {
     localStorage.setItem(key, value);
-    if (key==='user_name') setUserName(value);
+    if (key==='user') setUserName(value);
+    else if (key==='studentNo'&&setUserNo.length==9) {
+      setUserNo(value);
+      if (setUserNo.value.length!=9) {
+        alert('학번형식이 올바르지 않습니다.');
+      }
+    // eslint-disable-next-line brace-style
+    }
+    // eslint-disable-next-line no-undef
+    else if (key==='email'&& emailCheck.test(email)==true) {
+      setUserEmail(value);
+      // eslint-disable-next-line no-undef
+      if (emailCheck.test(email)==false) {
+        alert('이메일형식이 올바르지 않습니다.');
+      }
+    }
   }
+
   inputModalElement.close();
 };
+
 
 inputModalElement.onclick = (event) => {
   if (event.target.nodeName ==='DIALOG') inputModalElement.close();
