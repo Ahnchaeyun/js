@@ -17,6 +17,7 @@ nameH1Elemnent.onclick = () => {
     connectNameElemnent.textContent = inputName;
   } else {
     alert('이름이 입력되지 않았습니다.');
+    alert('테스트');
   }
 };
 /***/
