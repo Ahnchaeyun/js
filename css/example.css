@@ -1,0 +1,10 @@
+body{
+    background-color: aquamarine;
+}
+.inline{
+    display: inline-block;
+    cursor: pointer;
+}
+.red{
+    color: red;
+}
